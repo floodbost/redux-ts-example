@@ -1,17 +1,10 @@
 import {configureStore, ThunkAction, Action, getDefaultMiddleware} from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import Logger from "../middleware/logger";
-import {combineReducers} from "@reduxjs/toolkit";
-
-
-
-export const rootReducer = combineReducers({
-  counter: counterReducer
-});
+import loggerMiddleware from "../middleware/loggerMiddleware";
+import {rootReducer} from "./rootReducer";
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: [...getDefaultMiddleware<RootState>(), Logger]
+  middleware: [...getDefaultMiddleware(), loggerMiddleware]
 });
 
 export type AppDispatch = typeof store.dispatch

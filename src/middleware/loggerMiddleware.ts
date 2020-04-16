@@ -2,7 +2,7 @@ import { Middleware, MiddlewareAPI, Dispatch, Action } from "redux";
 import { RootState, AppDispatch } from "../app/store";
 import {CombinedState} from "redux";
 
-export const Logger: Middleware =
+export const LoggerMiddleware: Middleware =
     (store: MiddlewareAPI<CombinedState<AppDispatch>, RootState>) =>
         (next: Dispatch<Action>) =>
             <T extends Action>(action: T): T => {
@@ -12,4 +12,4 @@ export const Logger: Middleware =
     return next(action);
 };
 
-export default Logger;
+export default LoggerMiddleware;
